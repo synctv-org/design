@@ -118,5 +118,5 @@
 
 ---
 
-**项目仓库**: <https://github.com/your-org/synctv>
+**项目仓库**: <https://github.com/synctv-org/synctv>
 **作者**: SyncTV Team
