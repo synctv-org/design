@@ -59,8 +59,8 @@ use utoipa::{OpenApi, ToSchema};
 #[derive(Serialize, Deserialize, ToSchema)]
 pub struct User {
     /// 用户ID
-    #[schema(example = "550e8400-e29b-41d4-a716-446655440000")]
-    pub id: Uuid,
+    #[schema(example = "a1b2c3d4e5f6")]
+    pub id: String,  // nanoid(12)
 
     /// 用户名 (3-20字符)
     #[schema(example = "alice", min_length = 3, max_length = 20)]
@@ -236,7 +236,7 @@ pub fn merge_api_docs() -> utoipa::openapi::OpenApi {
                 "refresh_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
                 "expires_in": 3600,
                 "user": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "id": "a1b2c3d4e5f6",
                     "username": "alice",
                     "role": "user"
                 }

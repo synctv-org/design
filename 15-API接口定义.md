@@ -250,7 +250,7 @@ message RoomEvent {
     DELETED = 2;
   }
   Type type = 1;
-  string room_id = 2;  // nanoid string
+  string room_id = 2;  // nanoid(12)
   bytes data = 3;  // JSON encoded
 }
 
@@ -262,7 +262,7 @@ message PlaybackEvent {
     MOVIE_CHANGED = 3;
   }
   Type type = 1;
-  string room_id = 2;  // nanoid string
+  string room_id = 2;  // nanoid(12)
   bytes data = 3;
 }
 
@@ -273,15 +273,15 @@ message MemberEvent {
     PERMISSIONS_CHANGED = 2;
   }
   Type type = 1;
-  string room_id = 2;  // nanoid string
-  string user_id = 3;  // UUID string
+  string room_id = 2;  // nanoid(12)
+  string user_id = 3;  // nanoid(12)
   bytes data = 4;
 }
 
 message ChatEvent {
-  string room_id = 1;  // nanoid string
-  string message_id = 2;  // UUID string
-  string user_id = 3;  // UUID string
+  string room_id = 1;  // nanoid(12)
+  string message_id = 2;  // nanoid(12)
+  string user_id = 3;  // nanoid(12)
   string content = 4;
 }
 
@@ -398,13 +398,13 @@ service DataSyncService {
 
 ```protobuf
 message SyncRoomStateRequest {
-  string room_id = 1;  // nanoid string
+  string room_id = 1;  // nanoid(12)
   RoomState state = 2;
   string source_node_id = 3;
 }
 
 message RoomState {
-  string movie_id = 1;  // UUID string
+  string movie_id = 1;  // nanoid(12)
   string status = 2;  // playing|paused
   double current_time = 3;
   double rate = 4;
@@ -420,7 +420,7 @@ message SyncRoomStateResponse {
 
 ```protobuf
 message BatchGetRoomsRequest {
-  repeated string room_ids = 1;  // nanoid strings
+  repeated string room_ids = 1;  // nanoid(12)
 }
 
 message BatchGetRoomsResponse {
@@ -428,7 +428,7 @@ message BatchGetRoomsResponse {
 }
 
 message RoomInfo {
-  string id = 1;  // nanoid string
+  string id = 1;  // nanoid(12)
   string name = 2;
   int32 member_count = 3;
   bool is_live = 4;
@@ -440,16 +440,16 @@ message RoomInfo {
 
 ```protobuf
 message GetUserOnlineStatusRequest {
-  repeated string user_ids = 1;  // UUID strings
+  repeated string user_ids = 1;  // nanoid(12)
 }
 
 message GetUserOnlineStatusResponse {
-  map<string, OnlineStatus> statuses = 1;  // key: UUID string
+  map<string, OnlineStatus> statuses = 1;  // key: nanoid(12)
 }
 
 message OnlineStatus {
   bool online = 1;
-  string room_id = 2;  // nanoid string, empty = not in any room
+  string room_id = 2;  // nanoid(12), empty = not in any room
   string node_id = 3;
 }
 ```
